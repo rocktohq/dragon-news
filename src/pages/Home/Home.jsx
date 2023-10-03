@@ -1,9 +1,19 @@
+import Header from "../../components/Header/Header"
+import LatestNews from "../../components/LatestNews/LatestNews"
+import Navbar from "../../components/Navbar/Navbar"
 
 const Home = () => {
   return (
-    <div>
-      Home Page
-    </div>
+    <>
+      <header className="max-w-screen-xl mx-auto px-3">
+        <Header></Header>
+        <LatestNews></LatestNews>
+        <Navbar></Navbar>
+      </header>
+      <main className="max-w-screen-xl mx-auto px-3">
+        Home Page
+      </main>
+    </>
   )
 }
 
