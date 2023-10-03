@@ -10,8 +10,8 @@ const RightSideNav = () => {
       <div>
         <h2 className="text-xl font-semibold text-gray-600">Login With</h2>
         <div className="space-y-2 mt-5">
-          <button className="btn btn-outline btn-info rounded w-full"><FaGoogle /> Login with Google</button>
-          <button className="btn btn-outline btn-black rounded w-full"><FaGithub /> Login with Github</button>
+          <button className="btn btn-outline btn-info rounded w-full"><FaGoogle /> Google</button>
+          <button className="btn btn-outline btn-black rounded w-full"><FaGithub /> Github</button>
         </div>
       </div>
       <div>

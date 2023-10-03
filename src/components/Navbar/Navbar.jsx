@@ -28,7 +28,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <img className="w-12 h-12 mr-2" src={UserIcon} alt="" />
-        <a className="btn btn-neutral rounded">Login</a>
+        <NavLink to="/login"><button className="btn btn-neutral rounded">Login</button></NavLink>
       </div>
     </div>
   )
