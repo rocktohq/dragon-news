@@ -10,17 +10,19 @@ const Home = () => {
 
   const allNews = useLoaderData();
 
+  const latestHeadLines = allNews.filter(news => news.others_info.is_trending === true);
+
   return (
     <>
       <header className="max-w-screen-xl mx-auto px-3 mt-12 mb-20">
         <Header></Header>
-        <LatestNews></LatestNews>
+        <LatestNews latestHeadLines={latestHeadLines}></LatestNews>
         <Navbar></Navbar>
       </header>
       <main className="max-w-screen-xl mx-auto px-3 mb-12">
-        <section className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <section className="grid grid-cols-1 md:grid-cols-4 gap-6">
           <LeftSideNav></LeftSideNav>
-          <div className="col-span-2">
+          <div className="md:col-span-2">
             <h2 className="text-xl font-semibold text-gray-600">Dragon News Home</h2>
             <div className="space-y-8 mt-5">
               {
