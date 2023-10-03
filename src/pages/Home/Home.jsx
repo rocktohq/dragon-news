@@ -26,7 +26,7 @@ const Home = () => {
             <h2 className="text-xl font-semibold text-gray-600">Dragon News Home</h2>
             <div className="space-y-8 mt-5">
               {
-                allNews && allNews.map(news => <NewsCard key={news._id} news={news}></NewsCard>)
+                allNews && allNews.slice(0, 5).map(news => <NewsCard key={news._id} news={news}></NewsCard>)
               }
             </div>
           </div>
