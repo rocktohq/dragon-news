@@ -3,6 +3,7 @@ import { FaFacebook, FaGithub, FaGoogle, FaInstagram, FaTwitter } from "react-ic
 import qZone1 from "../../assets/qZone1.png"
 import qZone2 from "../../assets/qZone2.png"
 import qZone3 from "../../assets/qZone3.png"
+import bg1 from "/bg1.png"
 
 const RightSideNav = () => {
   return (
@@ -36,6 +37,16 @@ const RightSideNav = () => {
           <img className="w-full" src={qZone1} alt="qZone 1" />
           <img className="w-full" src={qZone2} alt="qZone 2" />
           <img className="w-full" src={qZone3} alt="qZone 3" />
+        </div>
+      </div>
+      <div className="text-center relative mt-7">
+        <figure className="bg-black">
+          <img className="w-full h-fit opacity-40" src={bg1} alt="" />
+        </figure>
+        <div className="absolute top-1/4 left-0 text-white p-8">
+          <h2 className="text-3xl font-bold">Create an Amazing Newspaper</h2>
+          <p className="mt-5 mb-8">Discover thousands of options, easy to customize layouts, one-click to import demo and much more.</p>
+          <button className="btn btn-error text-white rounded-none">Learn More</button>
         </div>
       </div>
     </div>

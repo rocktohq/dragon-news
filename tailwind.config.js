@@ -11,6 +11,9 @@ export default {
       },
       fontFamily: {
         poppins: "'Poppins', sans-serif",
+      },
+      backgroundImage: {
+        rightbg: "url(/bg1.png)"
       }
     },
 
