@@ -5,7 +5,7 @@ import Navbar from "../../components/Navbar/Navbar"
 const Home = () => {
   return (
     <>
-      <header className="max-w-screen-xl mx-auto px-3">
+      <header className="max-w-screen-xl mx-auto px-3 mt-12 mb-20">
         <Header></Header>
         <LatestNews></LatestNews>
         <Navbar></Navbar>
