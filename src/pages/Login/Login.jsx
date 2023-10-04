@@ -1,9 +1,61 @@
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import toast from "react-hot-toast";
 
 const Login = () => {
+
+  const { loginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+
+    // Data from User
+    const form = new FormData(event.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+
+    // Validation
+    if (email === "") {
+      toast.error("Email field can not be empty!");
+      return;
+    }
+    else if (password === "") {
+      toast.error("Password field can not be empty!");
+      return;
+    }
+
+    // Login User
+    // Loading
+    toast.loading("Login in Process...");
+
+    loginUser(email, password)
+      .then(() => {
+        toast.dismiss();
+        toast.success("Login Success!");
+        navigate("/");
+      })
+      .catch(error => {
+        toast.dismiss();
+        toast.error(error.message);
+        console.error(error.message);
+      })
+  }
   return (
-    <div>
-      Login
-    </div>
+    <section className="max-w-screen-md mx-auto shadow-md rounded-md my-12 p-5">
+      <h2 className="text-4xl font-bold text-center">Please Login</h2>
+      <form onSubmit={handleLogin}>
+        <div className="md:w-3/4 lg:2/3 mx-auto space-y-3 mt-5">
+          <input className="input border-gray-400 focus:outline-none rounded w-full" type="email" name="email" placeholder="example@email.com" />
+          <input className="input border-gray-400 focus:outline-none rounded w-full" type="password" name="password" placeholder="Password" />
+          <button className="btn btn-accent w-full rounded text-white">Login</button>
+        </div>
+      </form>
+      <div className="md:w-3/4 lg:2/3 mx-auto space-y-3 mt-5">
+        <p className="mx-auto">- Need an account? <Link to="/register"><span className="text-blue-500">Register here.</span></Link></p>
+      </div >
+    </section >
   )
 }
 

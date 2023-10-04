@@ -13,16 +13,21 @@ const RightSideNav = () => {
 
   const handleSocialLogin = (media) => {
     try {
+      toast.loading("Login in Process...");
       media()
         .then(() => {
+          toast.dismiss();
           toast.success("Login Success")
         })
         .catch(error => {
-          toast.error(error);
-          console.error(error)
+          toast.dismiss();
+          toast.error(error.message);
+          console.error(error.message)
         })
     }
     catch (error) {
+      toast.dismiss();
+      toast.error(error);
       console.error(error);
     }
   }
