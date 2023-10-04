@@ -9,28 +9,35 @@ import { AuthContext } from "../../providers/AuthProvider"
 import toast from "react-hot-toast"
 
 const RightSideNav = () => {
-  const { googleLogin } = useContext(AuthContext);
+  const { user, googleLogin, githubLogin } = useContext(AuthContext);
 
   const handleSocialLogin = (media) => {
-    media()
-      .then(() => {
-        toast.success("Login Success")
-      })
-      .catch(error => {
-        toast.error(error);
-        console.error(error)
-      })
+    try {
+      media()
+        .then(() => {
+          toast.success("Login Success")
+        })
+        .catch(error => {
+          toast.error(error);
+          console.error(error)
+        })
+    }
+    catch (error) {
+      console.error(error);
+    }
   }
 
   return (
     <div>
-      <div>
-        <h2 className="text-xl font-semibold text-gray-600">Login With</h2>
-        <div className="space-y-2 mt-5">
-          <button onClick={() => handleSocialLogin(googleLogin)} className="btn btn-outline btn-info rounded w-full"><FaGoogle /> Google</button>
-          <button className="btn btn-outline btn-black rounded w-full"><FaGithub /> Github</button>
+      {
+        !user && <div>
+          <h2 className="text-xl font-semibold text-gray-600">Login With</h2>
+          <div className="space-y-2 mt-5">
+            <button onClick={() => handleSocialLogin(googleLogin)} className="btn btn-outline btn-info rounded w-full"><FaGoogle /> Google</button>
+            <button onClick={() => handleSocialLogin(githubLogin)} className="btn btn-outline btn-black rounded w-full"><FaGithub /> Github</button>
+          </div>
         </div>
-      </div>
+      }
       <div>
         <h2 className="text-xl font-semibold text-gray-600 mt-7 mb-5">Find Us On</h2>
         <div className="border rounded-md space-y-3">
