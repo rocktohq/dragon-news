@@ -1,12 +1,14 @@
 import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
 
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser, googleLogin, githubLogin } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -34,12 +36,36 @@ const Login = () => {
       .then(() => {
         toast.dismiss();
         toast.success("Login Success!");
-        navigate("/");
+
+        // Navigate after Login
+        location.state
+          ? navigate(location.state)
+          : navigate("/")
       })
       .catch(error => {
         toast.dismiss();
         toast.error(error.message);
         console.error(error.message);
+      })
+  }
+
+
+  const handleSocialLogin = (media) => {
+    toast.loading("Login in Process...");
+    media()
+      .then(() => {
+        toast.dismiss();
+        toast.success("Login Success");
+
+        // Navigate after Login
+        location.state
+          ? navigate(location.state)
+          : navigate("/")
+      })
+      .catch(error => {
+        toast.dismiss();
+        toast.error(error.message);
+        console.error(error.message)
       })
   }
   return (
@@ -52,6 +78,10 @@ const Login = () => {
           <button className="btn btn-accent w-full rounded text-white">Login</button>
         </div>
       </form>
+      <div className="md:w-3/4 lg:2/3 mx-auto mt-3 flex flex-col md:flex-row gap-2">
+        <button onClick={() => handleSocialLogin(googleLogin)} className="btn btn-outline btn-info md:w-1/2 rounded"><FaGoogle /> Login with Google</button>
+        <button onClick={() => handleSocialLogin(githubLogin)} className="btn btn-outline btn-secondary md:w-1/2 rounded"><FaGithub /> Login with GitHub</button>
+      </div>
       <div className="md:w-3/4 lg:2/3 mx-auto space-y-3 mt-5">
         <p className="mx-auto">- Need an account? <Link to="/register"><span className="text-blue-500">Register here.</span></Link></p>
       </div >
