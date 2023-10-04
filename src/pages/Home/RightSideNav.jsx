@@ -4,14 +4,30 @@ import qZone1 from "../../assets/qZone1.png"
 import qZone2 from "../../assets/qZone2.png"
 import qZone3 from "../../assets/qZone3.png"
 import bg1 from "/bg1.png"
+import { useContext } from "react"
+import { AuthContext } from "../../providers/AuthProvider"
+import toast from "react-hot-toast"
 
 const RightSideNav = () => {
+  const { googleLogin } = useContext(AuthContext);
+
+  const handleSocialLogin = (media) => {
+    media()
+      .then(() => {
+        toast.success("Login Success")
+      })
+      .catch(error => {
+        toast.error(error);
+        console.error(error)
+      })
+  }
+
   return (
     <div>
       <div>
         <h2 className="text-xl font-semibold text-gray-600">Login With</h2>
         <div className="space-y-2 mt-5">
-          <button className="btn btn-outline btn-info rounded w-full"><FaGoogle /> Google</button>
+          <button onClick={() => handleSocialLogin(googleLogin)} className="btn btn-outline btn-info rounded w-full"><FaGoogle /> Google</button>
           <button className="btn btn-outline btn-black rounded w-full"><FaGithub /> Github</button>
         </div>
       </div>

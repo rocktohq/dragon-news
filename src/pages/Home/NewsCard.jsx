@@ -26,7 +26,11 @@ const NewsCard = ({ news }) => {
       <div className='p-5 space-y-3'>
         <h2 className='text-xl font-bold'>{title}</h2>
         <img src={image_url} alt={title} />
-        <p className='text-gray-500'>{details.slice(0, 263)}...</p>
+        <p className='text-gray-500'>{
+          details.length > 200
+            ? details.slice(0, 200)
+            : details
+        }...</p>
         <Link to={`/news/${_id}`} className='font-bold text-orange-500'>Read More</Link>
         <hr />
         <div className='flex justify-between items-center'>

@@ -1,7 +1,22 @@
 import { NavLink } from "react-router-dom"
 import UserIcon from "../../assets/user.png"
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("Logged Out");
+      })
+      .catch(error => {
+        toast.error(error);
+        console.error(error)
+      })
+  }
 
   const navLinks = <>
     <li><NavLink to="/">Home</NavLink></li>
@@ -27,8 +42,14 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <img className="w-12 h-12 mr-2" src={UserIcon} alt="" />
-        <NavLink to="/login"><button className="btn btn-neutral rounded">Login</button></NavLink>
+        <img className="w-12 h-12 mr-2 rounded-full" src={
+          user?.photoURL ? user.photoURL : UserIcon
+        } alt="" />
+        {
+          user
+            ? <button onClick={handleLogOut} className="btn btn-neutral rounded">Logout</button>
+            : <NavLink to="/login"><button className="btn btn-neutral rounded">Login</button></NavLink>
+        }
       </div>
     </div>
   )
