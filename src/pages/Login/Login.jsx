@@ -20,7 +20,10 @@ const Login = () => {
     const password = form.get("password");
 
     // Validation
-    if (email === "") {
+    if (email === "" && password === "") {
+      toast.error("All fields are required!");
+      return;
+    } else if (email === "") {
       toast.error("Email field can not be empty!");
       return;
     }
@@ -50,7 +53,7 @@ const Login = () => {
       })
   }
 
-
+  // Soial Media Login
   const handleSocialLogin = (media) => {
     toast.loading("Login in Process...");
     media()
