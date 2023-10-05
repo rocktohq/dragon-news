@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 const Register = () => {
 
@@ -82,24 +83,29 @@ const Register = () => {
   }
 
   return (
-    <section className="max-w-screen-md mx-auto shadow-md rounded-md my-12 p-5">
-      <h2 className="text-4xl font-bold text-center">Please Register</h2>
-      <form onSubmit={handleRegister}>
+    <HelmetProvider>
+      <Helmet>
+        <title>Dragon News - Register</title>
+      </Helmet>
+      <section className="max-w-screen-md mx-auto shadow-md rounded-md my-12 p-5">
+        <h2 className="text-4xl font-bold text-center">Please Register</h2>
+        <form onSubmit={handleRegister}>
+          <div className="md:w-3/4 lg:2/3 mx-auto space-y-3 mt-5">
+            <input className="input border-gray-400 focus:outline-none rounded w-full" type="text" name="name" placeholder="Full Name" />
+            <input className="input border-gray-400 focus:outline-none rounded w-full" type="text" name="photo" placeholder="Photo URL" />
+            <input className="input border-gray-400 focus:outline-none rounded w-full" type="email" name="email" placeholder="example@email.com" />
+            <input className="input border-gray-400 focus:outline-none rounded w-full" type="password" name="password" placeholder="Password" />
+            <input className="input border-gray-400 focus:outline-none rounded w-full" type="password" name="password2" placeholder="Confirm Password" />
+            <input type="checkbox" name="terms" id="terms" className="mr-2" />
+            <label htmlFor="terms" className="font-medium">Accept Terms and Conditions</label>
+            <button className="btn btn-neutral w-full rounded text-white">Register</button>
+          </div>
+        </form>
         <div className="md:w-3/4 lg:2/3 mx-auto space-y-3 mt-5">
-          <input className="input border-gray-400 focus:outline-none rounded w-full" type="text" name="name" placeholder="Full Name" />
-          <input className="input border-gray-400 focus:outline-none rounded w-full" type="text" name="photo" placeholder="Photo URL" />
-          <input className="input border-gray-400 focus:outline-none rounded w-full" type="email" name="email" placeholder="example@email.com" />
-          <input className="input border-gray-400 focus:outline-none rounded w-full" type="password" name="password" placeholder="Password" />
-          <input className="input border-gray-400 focus:outline-none rounded w-full" type="password" name="password2" placeholder="Confirm Password" />
-          <input type="checkbox" name="terms" id="terms" className="mr-2" />
-          <label htmlFor="terms" className="font-medium">Accept Terms and Conditions</label>
-          <button className="btn btn-accent w-full rounded text-white">Register</button>
-        </div>
-      </form>
-      <div className="md:w-3/4 lg:2/3 mx-auto space-y-3 mt-5">
-        <p className="mx-auto">- Already have an account? <Link to="/login"><span className="text-blue-500">Login here.</span></Link></p>
-      </div >
-    </section >
+          <p className="mx-auto">- Already have an account? <Link to="/login"><span className="text-blue-500">Login here.</span></Link></p>
+        </div >
+      </section >
+    </HelmetProvider>
   )
 }
 
